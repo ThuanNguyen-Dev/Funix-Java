@@ -16,13 +16,85 @@ public class Lab6 {
 //        lab611();
 //        Ex1();
 //        Ex2();
-        Ex3();
+//        Ex3();
+//        Ex4();
+//        Ex5();
+//        Ex6();
+//        Ex7();
+        Ex8();
+    }
+
+    private static void Ex8() {
+        Scanner scanner = new Scanner(System.in);
+        String text = scanner.nextLine().trim();
+        if (text.length() <= 0) {
+            System.out.println(0);
+        } else {
+            String[] words = text.split("[   !,?._'@+]+");
+            System.out.println(words.length);
+            for (String w : words) {
+                System.out.println(w);
+            }
+        }
+    }
+
+    private static void Ex7() {
+        Scanner scanner = new Scanner(System.in);
+        String string = scanner.next();
+        System.out.println(Palindrome(string));
+    }
+
+    public static String Palindrome(String string) {
+        StringBuilder input = new StringBuilder();
+        input.append(string);
+        return string.equals(input.reverse().toString()) ? "Yes" : "No";
+    }
+
+    private static void Ex6() {
+        Scanner scanner = new Scanner(System.in);
+        String s = scanner.nextLine();
+        int k = scanner.nextInt();
+        System.out.println(getSmallestAndLargest(s, k));
+    }
+
+    public static String getSmallestAndLargest(String s, int k) {
+        String smallest = s.substring(0, k);
+        String largest = s.substring(0, k);
+        for (int i = 0; i + k - 1 < s.length(); i++) {
+            if (s.substring(i, i + k).compareTo(smallest) < 0) {
+                smallest = s.substring(i, i + k);
+            } else if (s.substring(i, i + k).compareTo(largest) > 0) {
+                largest = s.substring(i, i + k);
+            }
+        }
+        return smallest + "\n" + largest;
+    }
+
+    private static void Ex5() {
+        Scanner sc = new Scanner(System.in);
+        String A = sc.next();
+        String B = sc.next();
+
+        System.out.println(A.length() + B.length());
+        System.out.println(A.compareTo(B) > 0 ? "Yes" : "No");
+        System.out.println(A.substring(0, 1).toUpperCase() + A.substring(1) + " " + B.substring(0, 1).toUpperCase() + B.substring(1));
+    }
+
+    private static void Ex4() {
+        Scanner sc = new Scanner(System.in);
+        int B = sc.nextInt();
+        int H = sc.nextInt();
+        if (B > 0 && H > 0) {
+            System.out.println(B * H);
+        } else {
+            System.out.println("java.lang.Exception: Breadth and height must be positive");
+        }
     }
 
     private static void Ex3() {
         Scanner scanner = new Scanner(System.in);
-        int n=1;
-        while(scanner.hasNext()) {
+        int n = 1;
+        while (scanner.hasNext()) {
             System.out.println(n++ + " " + scanner.nextLine());
         }
         scanner.close();
@@ -36,11 +108,11 @@ public class Lab6 {
             int b = in.nextInt();
             int n = in.nextInt();
 
-            int prev=0;
-            for(int j=0;j<n;++j){
-                prev+=Math.pow(2,j)*b;
-                int solution=a+prev;
-                System.out.printf("%d ",solution);
+            int prev = 0;
+            for (int j = 0; j < n; ++j) {
+                prev += Math.pow(2, j) * b;
+                int solution = a + prev;
+                System.out.printf("%d ", solution);
             }
             System.out.println();
         }
