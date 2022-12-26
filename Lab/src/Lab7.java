@@ -24,7 +24,132 @@ public class Lab7 {
 //        EX73();
 //        EX74();
 //        EX75();
-        EX76();
+//        EX76();
+//        EX77();
+//        EX78();
+//        EX79();
+//        EX710();
+        EX711();
+    }
+
+    private static void EX711() {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        String[] pair_left = new String[t];
+        String[] pair_right = new String[t];
+
+        for (int i = 0; i < t; i++) {
+            pair_left[i] = scanner.next();
+            pair_right[i] = scanner.next();
+        }
+
+        Set<String> out = new HashSet<>();
+        for (int i = 0; i < t; i++) {
+            String n = pair_left[i] + "_" + pair_right[i];
+            out.add(n);
+            System.out.println(out.size());
+        }
+    }
+
+    private static void EX710() {
+        Scanner scanner = new Scanner(System.in);
+
+        while (scanner.hasNext()) {
+            String input = scanner.next();
+            //Complete the code
+            char[] ch = input.toCharArray();
+            String s = "";
+            Stack<Character> co = new Stack<>();
+            Stack<Character> cc = new Stack<>();
+            for (int i = 0; i < ch.length; i++) {
+                if (ch[i] == '{' || ch[i] == '(' || ch[i] == '[')
+                    co.push(ch[i]);
+                else if (ch[i] == '}' || ch[i] == ')' || ch[i] == ']')
+                    cc.push(ch[i]);
+            }
+            if (co.size() == cc.size()) {
+                if (input.length() == 2 && input.charAt(0) == '}')
+                    System.out.println("false");
+                else
+                    System.out.println("true");
+            } else
+                System.out.println("false");
+        }
+        scanner.close();
+    }
+
+    private static void EX79() {
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        HashMap<String, Integer> phoneBook = new HashMap<>();
+        scanner.nextLine();
+        for (int i = 0; i < n; i++) {
+            String name = scanner.nextLine();
+            int number = scanner.nextInt();
+            phoneBook.put(name, number);
+            scanner.nextLine();
+        }
+        while (scanner.hasNext()) {
+            String name = scanner.nextLine();
+            if (phoneBook.containsKey(name)) {
+                System.out.println(name + "=" + phoneBook.get(name));
+            } else {
+                System.out.println("Not found");
+            }
+        }
+    }
+
+    private static void EX78() {
+        ArrayList mylist = new ArrayList();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+        for (int i = 0; i < n; i++) {
+            mylist.add(scanner.nextInt());
+        }
+        mylist.add("###");
+        for (int i = 0; i < m; i++) {
+            mylist.add(scanner.next());
+        }
+        Iterator it = func(mylist);
+        while (it.hasNext()) {
+            Object element = it.next();
+            System.out.println((String) element);
+        }
+    }
+
+    static Iterator func(ArrayList mylist) {
+        Iterator it = mylist.iterator();
+        while (it.hasNext()) {
+            Object element = it.next();
+            if (element instanceof String)
+                break;
+        }
+        return it;
+    }
+
+    private static void EX77() {
+        Scanner scanner = new Scanner(System.in);
+        List<Integer> list = new ArrayList<>();
+        int n = scanner.nextInt();
+        for (int i = 0; i < n; i++) {
+            list.add(scanner.nextInt());
+        }
+        int q = scanner.nextInt();
+        for (int j = 0; j < q; j++) {
+            scanner.nextLine();
+            String comment = scanner.nextLine();
+            int x = scanner.nextInt();
+            if (comment.equals("Insert")) {
+                list.add(x, scanner.nextInt());
+            }
+            if (comment.equals("Delete")) {
+                list.remove(x);
+            }
+        }
+        for (int i : list) {
+            System.out.printf(i + " ");
+        }
     }
 
     private static void EX76() {
@@ -41,18 +166,18 @@ public class Lab7 {
             arrayList_d.add(arr);
         }
         int q = scanner.nextInt();
-        for (int i = 0; i < q; i++){
+        for (int i = 0; i < q; i++) {
             int[] arr = new int[2];
             for (int j = 0; j < arr.length; j++) {
                 arr[j] = scanner.nextInt();
             }
             arrayList_q.add(arr);
         }
-        for (int i = 0; i< arrayList_q.size(); i++){
+        for (int i = 0; i < arrayList_q.size(); i++) {
             int numEl = arrayList_q.get(i)[0] - 1;
             int El = arrayList_q.get(i)[1] - 1;
             int lengthArrayList_d = arrayList_d.get(numEl).length;
-            if ( lengthArrayList_d > 0 && El < lengthArrayList_d){
+            if (lengthArrayList_d > 0 && El < lengthArrayList_d) {
                 System.out.println(arrayList_d.get(numEl)[El]);
             } else {
                 System.out.println("ERROR!");
@@ -61,13 +186,13 @@ public class Lab7 {
     }
 
     private static void EX75() {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
         int[] A = new int[n];
         for (int i = 0; i < n; i++) {
-            A[i] = sc.nextInt();
+            A[i] = scanner.nextInt();
         }
-        sc.close();
+        scanner.close();
         int subArr = 0;
         for (int i = 0; i < n; i++) {
             int sum = 0;
@@ -118,20 +243,20 @@ public class Lab7 {
 
 
     private static void EX73() {
-        Scanner scan = new Scanner(System.in);
-        int q = scan.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int q = scanner.nextInt();
         while (q-- > 0) {
-            int n = scan.nextInt();
-            int leap = scan.nextInt();
+            int n = scanner.nextInt();
+            int leap = scanner.nextInt();
 
             int[] game = new int[n];
             for (int i = 0; i < n; i++) {
-                game[i] = scan.nextInt();
+                game[i] = scanner.nextInt();
             }
 
             System.out.println((canWin(leap, game, 0)) ? "YES" : "NO");
         }
-        scan.close();
+        scanner.close();
     }
 
     public static boolean canWin(int leap, int[] game, int i) {
@@ -146,11 +271,11 @@ public class Lab7 {
     }
 
     private static void EX72() {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
         int[] a = new int[n];
         for (int i = 0; i < n; i++) {
-            a[i] = sc.nextInt();
+            a[i] = scanner.nextInt();
         }
         for (int i = 0; i < n; i++) {
             System.out.println(a[i]);
@@ -158,10 +283,10 @@ public class Lab7 {
     }
 
     private static void EX71() {
-        Scanner sc = new Scanner(System.in);
-        String a = sc.nextLine();
-        String b = sc.nextLine();
-        sc.close();
+        Scanner scanner = new Scanner(System.in);
+        String a = scanner.nextLine();
+        String b = scanner.nextLine();
+        scanner.close();
 
         char[] arrayA = (a.toLowerCase()).toCharArray();
         char[] arrayB = (b.toLowerCase()).toCharArray();
@@ -182,10 +307,10 @@ public class Lab7 {
 
     public static int[] getIntegers(int capacity) {
         int[] array = new int[capacity];
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("Nhap 5 so: ");
         for (int i = 0; i < capacity; i++) {
-            array[i] = sc.nextInt();
+            array[i] = scanner.nextInt();
         }
         return array;
     }
@@ -210,14 +335,14 @@ public class Lab7 {
     //endregion
 
     private static void lab710() {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
         int[][] arr = new int[n][m];
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                arr[i][j] = sc.nextInt();
+                arr[i][j] = scanner.nextInt();
             }
         }
 
@@ -233,14 +358,14 @@ public class Lab7 {
     }
 
     private static void lab79() {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        int m = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
         int[][] arr = new int[n][m];
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                arr[i][j] = sc.nextInt();
+                arr[i][j] = scanner.nextInt();
             }
         }
 
@@ -255,12 +380,12 @@ public class Lab7 {
     }
 
     private static void lab78() {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
         int[] arr = new int[n];
 
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+            arr[i] = scanner.nextInt();
         }
 
         for (int i = 0; i < n; i++) {
@@ -278,12 +403,12 @@ public class Lab7 {
     }
 
     private static void lab77() {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
         int[] arr = new int[n];
 
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+            arr[i] = scanner.nextInt();
         }
 
         for (int i = 0; i < n; i++) {
@@ -294,12 +419,12 @@ public class Lab7 {
     }
 
     private static void lab76() {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
         int[] arr = new int[n];
 
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+            arr[i] = scanner.nextInt();
         }
 
         int result = 0;
@@ -312,14 +437,14 @@ public class Lab7 {
     }
 
     private static void lab75() {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
         int[] arr = new int[n];
 
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+            arr[i] = scanner.nextInt();
         }
-        int k = sc.nextInt();
+        int k = scanner.nextInt();
 
         int count = 0;
         for (int i = 0; i < n; i++) {
@@ -331,13 +456,13 @@ public class Lab7 {
     }
 
     private static void lab74() {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        int n = sc.nextInt();
+        int n = scanner.nextInt();
 
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+            arr[i] = scanner.nextInt();
         }
 
         for (int i = 0; i < n; i++) {
@@ -348,26 +473,26 @@ public class Lab7 {
     }
 
     private static void lab73() {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        int n = sc.nextInt();
+        int n = scanner.nextInt();
 
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+            arr[i] = scanner.nextInt();
         }
 
         System.out.print(arr[0] + arr[n - 1]);
     }
 
     private static void lab72() {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        int n = sc.nextInt();
+        int n = scanner.nextInt();
 
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.nextInt();
+            arr[i] = scanner.nextInt();
         }
 
         int maxValue = arr[0];
@@ -381,12 +506,12 @@ public class Lab7 {
     }
 
     private static void lab71() {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         // Khai báo mảng a kiểu số nguyên với 10 phần tử
         int[] a = new int[10];
         // Dùng vòng for để nhập dữ liệu cho các phần tử trong mảng
         for (int i = 0; i < 10; i++) {
-            a[i] = sc.nextInt();
+            a[i] = scanner.nextInt();
         }
         // Dùng vòng for để hiển thị các phần tử trong mảng
         for (int i = 0; i < 10; i++) {
